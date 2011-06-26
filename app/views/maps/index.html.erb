@@ -10,13 +10,31 @@
 <script type="text/javascript">
   $(function() {
     var latlng = new google.maps.LatLng(51.26793,1.108246);
-    var myOptions = {
+    var opts = {
       zoom: 8,
       center: latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById("map_canvas"),
-        myOptions);
+    var map = new google.maps.Map(document.getElementById("map_canvas"), opts);
+    
+    $.getJSON("/sightings.json", function(data) {
+    	$.each(data, function(key, val) {
+    		var lat = val.sighting.lat;
+    		var lng = val.sighting.long;
+    		var desc = val.sighting.description;
+    		var occ = val.sighting.occasion;
+    		var loc = new google.maps.LatLng(lat, lng);
+    		var marker = new google.maps.Marker({position: loc, map: map, title: desc});
+    		
+    		var info = new google.maps.InfoWindow();
+    		google.maps.event.addListener(marker, 'click', function () {
+    			var content = '<p>' + desc + '</p>';
+    			content += '<p>Date: ' + occ + '</p>';
+				info.setContent(content);
+                info.open(map, this);
+			});
+        });
+    })
   });
 </script>
 
