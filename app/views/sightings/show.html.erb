@@ -25,6 +25,16 @@
   <%= @sighting.long %>
 </p>
 
+<p>
+  <b>User:</b>
+  <%= @sighting.user %>
+</p>
+
+<p>
+  <b>Species:</b>
+  <%= @sighting.species %>
+</p>
+
 
 <%= link_to 'Edit', edit_sighting_path(@sighting) %> |
 <%= link_to 'Back', sightings_path %>

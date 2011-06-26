@@ -6,6 +6,8 @@ class CreateSightings < ActiveRecord::Migration
       t.string :photo
       t.decimal :lat
       t.decimal :long
+      t.references :user
+      t.references :species
 
       t.timestamps
     end

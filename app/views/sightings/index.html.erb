@@ -7,6 +7,8 @@
     <th>Photo</th>
     <th>Lat</th>
     <th>Long</th>
+    <th>User</th>
+    <th>Species</th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,6 +21,8 @@
     <td><%= sighting.photo %></td>
     <td><%= sighting.lat %></td>
     <td><%= sighting.long %></td>
+    <td><%= sighting.user %></td>
+    <td><%= sighting.species %></td>
     <td><%= link_to 'Show', sighting %></td>
     <td><%= link_to 'Edit', edit_sighting_path(sighting) %></td>
     <td><%= link_to 'Destroy', sighting, :confirm => 'Are you sure?', :method => :delete %></td>

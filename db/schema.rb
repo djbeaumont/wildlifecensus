@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110626142831) do
+ActiveRecord::Schema.define(:version => 20110626145436) do
 
   create_table "sightings", :force => true do |t|
     t.datetime "occasion"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(:version => 20110626142831) do
     t.string   "photo"
     t.decimal  "lat"
     t.decimal  "long"
+    t.integer  "user_id"
+    t.integer  "species_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
