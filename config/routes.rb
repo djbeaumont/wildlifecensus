@@ -1,4 +1,6 @@
 Wildlifecensus::Application.routes.draw do
+  match "/maps" => "maps#index"
+
   resources :sightings
 
   resources :users
