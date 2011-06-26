@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  occasion: 2011-06-26 15:28:31
+  description: MyText
+  photo: MyString
+  lat: 9.99
+  long: 9.99
+
+two:
+  occasion: 2011-06-26 15:28:31
+  description: MyText
+  photo: MyString
+  lat: 9.99
+  long: 9.99

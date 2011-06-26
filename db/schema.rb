@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110626142225) do
+ActiveRecord::Schema.define(:version => 20110626142831) do
+
+  create_table "sightings", :force => true do |t|
+    t.datetime "occasion"
+    t.text     "description"
+    t.string   "photo"
+    t.decimal  "lat"
+    t.decimal  "long"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "species", :force => true do |t|
     t.string   "latin"

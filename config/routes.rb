@@ -1,4 +1,6 @@
 Wildlifecensus::Application.routes.draw do
+  resources :sightings
+
   resources :users
 
   resources :species

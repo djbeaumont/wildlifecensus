@@ -1,0 +1,31 @@
+<h1>Listing sightings</h1>
+
+<table>
+  <tr>
+    <th>Occasion</th>
+    <th>Description</th>
+    <th>Photo</th>
+    <th>Lat</th>
+    <th>Long</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sightings.each do |sighting| %>
+  <tr>
+    <td><%= sighting.occasion %></td>
+    <td><%= sighting.description %></td>
+    <td><%= sighting.photo %></td>
+    <td><%= sighting.lat %></td>
+    <td><%= sighting.long %></td>
+    <td><%= link_to 'Show', sighting %></td>
+    <td><%= link_to 'Edit', edit_sighting_path(sighting) %></td>
+    <td><%= link_to 'Destroy', sighting, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sighting', new_sighting_path %>
