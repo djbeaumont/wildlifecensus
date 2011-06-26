@@ -1,4 +1,6 @@
 Wildlifecensus::Application.routes.draw do
+  resources :users
+
   resources :species
 
   root :to => "home#index"
