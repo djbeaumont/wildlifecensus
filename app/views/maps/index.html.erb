@@ -19,10 +19,10 @@
     
     $.getJSON("/sightings.json", function(data) {
     	$.each(data, function(key, val) {
-    		var lat = val.sighting.lat;
-    		var lng = val.sighting.long;
-    		var desc = val.sighting.description;
-    		var occ = val.sighting.occasion;
+    		var lat = val.lat;
+    		var lng = val.long;
+    		var desc = val.description;
+    		var occ = val.occasion;
     		var loc = new google.maps.LatLng(lat, lng);
     		var marker = new google.maps.Marker({position: loc, map: map, title: desc});
     		
