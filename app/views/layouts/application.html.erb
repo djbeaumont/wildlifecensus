@@ -10,13 +10,11 @@
 <body>
 
 <div id="topbar">
-  <div id="user_nav">
+  <div id="loginitems">
 	<% if current_user %>
-	  Logged in as <%= current_user.email %>.
-	  <%= link_to "Log out", logout_path %>
+	  Logged in as <%= current_user.email %>. <%= link_to "Log out", logout_path %>
 	<% else %>
-	  <%= link_to "Sign up", register_path %> or
-	  <%= link_to "log in", login_path %>
+	  <%= link_to "Register", register_path %> or <%= link_to "log in", login_path %>
 	<% end %>
   </div>
 </div>
