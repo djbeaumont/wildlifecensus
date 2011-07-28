@@ -1,0 +1,20 @@
+html, body {
+	height: 100%;
+	margin: 0px;
+	padding: 0px
+}
+
+#topbar {
+	color: #FFF;
+	background-color: #2D3130;
+	padding: 0.5em 1em;
+	box-shadow: 0px 5px 5px #888;
+}
+
+#contents {
+	
+}
+
+#map {
+	height: 100%;
+}
