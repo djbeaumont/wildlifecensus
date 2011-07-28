@@ -4,11 +4,11 @@
 
 <script type="text/javascript">
   $(function() {
-    var latlng = new google.maps.LatLng(51.26793,1.108246);
+    var bekesbourne = new google.maps.LatLng(51.26793,1.108246);
     var opts = {
       zoom: 12,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      center: bekesbourne,
+      mapTypeId: google.maps.MapTypeId.HYBRID
     };
     var map = new google.maps.Map(document.getElementById("map"), opts);
     
@@ -35,6 +35,10 @@
     setMapHeight();
   });
   
+  /**
+   * Set the height of the #contents div so that the map will fill
+   * the rest of the viewport after the menu bar.
+   */
   function setMapHeight() {
   	topbarheight = document.getElementById("topbar").offsetHeight;
     viewportheight = window.innerHeight;
