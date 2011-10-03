@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   
+  has_many :sightings
+  
   attr_accessible :email, :password, :password_confirmation
   
   attr_accessor :password
@@ -18,7 +20,7 @@ class User < ActiveRecord::Base
   end
   
   def to_s
-    @email
+    @username
   end
   
 end
