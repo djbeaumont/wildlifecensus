@@ -21,8 +21,8 @@
     <td><%= sighting.photo %></td>
     <td><%= sighting.lat %></td>
     <td><%= sighting.long %></td>
-    <td><%= sighting.user.email %></td>
-    <td><%= sighting.species.vernacular %></td>
+    <td><%= link_to sighting.user.email, sighting.user %></td>
+    <td><%= link_to sighting.species.vernacular, sighting.species %></td>
     <td><%= link_to 'Show', sighting %></td>
     <td><%= link_to 'Edit', edit_sighting_path(sighting) %></td>
     <td><%= link_to 'Destroy', sighting, :confirm => 'Are you sure?', :method => :delete %></td>
