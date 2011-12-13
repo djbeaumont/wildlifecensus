@@ -5,8 +5,8 @@
     <th>Occasion</th>
     <th>Description</th>
     <th>Photo</th>
-    <th>Lat</th>
-    <th>Long</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
     <th>User</th>
     <th>Species</th>
     <th></th>
@@ -19,8 +19,8 @@
     <td><%= sighting.occasion %></td>
     <td><%= sighting.description %></td>
     <td><%= sighting.photo %></td>
-    <td><%= sighting.lat %></td>
-    <td><%= sighting.long %></td>
+    <td><%= sighting.latitude %></td>
+    <td><%= sighting.longitude %></td>
     <td><%= link_to sighting.user.email, sighting.user %></td>
     <td><%= link_to sighting.species.vernacular, sighting.species %></td>
     <td><%= link_to 'Show', sighting %></td>
