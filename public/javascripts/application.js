@@ -25,7 +25,23 @@ function getLocation() {
  * If the location is found, centre the map on it.
  */
 function locationFound(position) {
-  // TODO
+  // Centre the map on the new location
+  var coords = position.coords || position.coordinate || position;
+  var latLng = new google.maps.LatLng(coords.latitude, coords.longitude);
+  map.panTo(latLng);
+  
+  var marker = new google.maps.Marker({
+    map: map,
+    position: latLng,
+    title: 'Current Location'
+  });
+  
+  var info = new google.maps.InfoWindow();
+  google.maps.event.addListener(marker, 'click', function () {
+    var content = '<p>' + "Current Location" + '</p>';
+    info.setContent(content);
+    info.open(map, this);
+  });
 }
 
 /**
@@ -36,7 +52,7 @@ function locationFailure(err) {
 }
 
 /**
- * 
+ * Create a new Google Map and put it on the page.
  */
 function drawMap() {
   var bekesbourne = new google.maps.LatLng(defaultLat, defaultLong);
@@ -49,27 +65,29 @@ function drawMap() {
 }
 
 /**
- * 
+ * Retrieve sightings from Wildlife Census' API.
  */
 function getSightings() {
-  $.getJSON("/sightings.json", addMarker);
+  $.getJSON("/sightings.json", function(data) {
+    $.each(data, function(key, val) {
+      addSightingMarker(val);
+    });
+  });
 }
 
 /**
  * 
  */
-function addMarker(data) {
-  $.each(data, function(key, val) {
-    var loc = new google.maps.LatLng(val.latitude, val.longitude);
-    var marker = new google.maps.Marker({position: loc, map: map, title: val.description});
+function addSightingMarker(val) {
+  var loc = new google.maps.LatLng(val.latitude, val.longitude);
+  var marker = new google.maps.Marker({position: loc, map: map, title: val.description});
        
-    var info = new google.maps.InfoWindow();
-    google.maps.event.addListener(marker, 'click', function () {
-      var content = '<p>' + val.description + '</p>';
-      content += '<p>Date: ' + val.occasion + '</p>';
-      info.setContent(content);
-      info.open(map, this);
-    });
+  var info = new google.maps.InfoWindow();
+  google.maps.event.addListener(marker, 'click', function () {
+    var content = '<p>' + val.description + '</p>';
+    content += '<p>Date: ' + val.occasion + '</p>';
+    info.setContent(content);
+    info.open(map, this);
   });
 }
 
@@ -85,9 +103,9 @@ function getMap() {
  * the rest of the viewport after the menu bar.
  */
 function setMapHeight() {
-  var topbarheight = document.getElementById("topbar").offsetHeight;
-  var viewportheight = window.innerHeight;
-  var contentsdiv = document.getElementById("contents");
-  contentsdiv.style.height = (viewportheight - topbarheight) + "px";
+  var topBarHeight = document.getElementById("topbar").offsetHeight;
+  var viewportHeight = window.innerHeight;
+  var contentsDiv = document.getElementById("contents");
+  contentsDiv.style.height = (viewportHeight - topBarHeight) + "px";
 }
   
