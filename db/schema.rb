@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110930185209) do
+ActiveRecord::Schema.define(:version => 20111213144650) do
 
   create_table "sightings", :force => true do |t|
     t.datetime "occasion"
     t.text     "description"
     t.string   "photo"
-    t.decimal  "lat"
-    t.decimal  "long"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
     t.integer  "user_id"
     t.integer  "species_id"
     t.datetime "created_at"
