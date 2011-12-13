@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 source :gemcutter
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.1.3'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem "jquery-rails"
 
