@@ -3,17 +3,20 @@
  */
 
 // Default static location for the map (Bekesbourne)
-var defaultLat = 51.26793;
-var defaultLong = 1.108246;
-var defaultZoom = 12;
+var defaults = {
+  lat: 51.26793,
+  lng: 1.108246,
+  zoom: 12
+};
 
+// Instance variables
 var map;
 
 /**
- * Ask the browser for the user's current location.
+ * Ask the browser for the user's current location, checking if geolocation
+ * is supported.
  */
 function getLocation() {
-  // Check if geolocation is supported by the browser
 	if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(locationFound, locationFailure);
   } else {
@@ -30,12 +33,14 @@ function locationFound(position) {
   var latLng = new google.maps.LatLng(coords.latitude, coords.longitude);
   map.panTo(latLng);
   
+  // Add a marker
   var marker = new google.maps.Marker({
     map: map,
     position: latLng,
     title: 'Current Location'
   });
   
+  // Add a listener to show an information window on marker clicks.
   var info = new google.maps.InfoWindow();
   google.maps.event.addListener(marker, 'click', function () {
     var content = '<p>' + "Current Location" + '</p>';
@@ -55,11 +60,9 @@ function locationFailure(err) {
  * Create a new Google Map and put it on the page.
  */
 function drawMap() {
-  var bekesbourne = new google.maps.LatLng(defaultLat, defaultLong);
+  var home = new google.maps.LatLng(defaults.lat, defaults.lng);
   var opts = {
-    zoom: defaultZoom,
-    center: bekesbourne,
-    mapTypeId: google.maps.MapTypeId.HYBRID
+    zoom: defaults.zoom, center: home, mapTypeId: google.maps.MapTypeId.HYBRID
   };
   map = new google.maps.Map(document.getElementById("map"), opts);
 }
@@ -76,23 +79,25 @@ function getSightings() {
 }
 
 /**
- * 
+ * Add a sighting marker to the map
  */
-function addSightingMarker(val) {
-  var loc = new google.maps.LatLng(val.latitude, val.longitude);
-  var marker = new google.maps.Marker({position: loc, map: map, title: val.description});
+function addSightingMarker(sighting) {
+  // Add the marker
+  var loc = new google.maps.LatLng(sighting.latitude, sighting.longitude);
+  var marker = new google.maps.Marker({position: loc, map: map, title: sighting.description});
        
+  // Add an information window
   var info = new google.maps.InfoWindow();
   google.maps.event.addListener(marker, 'click', function () {
-    var content = '<p>' + val.description + '</p>';
-    content += '<p>Date: ' + val.occasion + '</p>';
+    var content = '<p>' + sighting.description + '</p>';
+    content += '<p>Date: ' + sighting.occasion + '</p>';
     info.setContent(content);
     info.open(map, this);
   });
 }
 
 /**
- * 
+ * Get the main sightings map
  */
 function getMap() {
   return map;
