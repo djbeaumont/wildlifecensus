@@ -22,9 +22,9 @@ class SessionsController < ApplicationController
 
   def authenticate(email, password)
     user = User.find_by_email(email)
-    hash = BCrypt::Engine.hash_secret(password, user.salt)
+    hash = BCrypt::Engine.hash_secret(password, user.password_salt)
     
-    if user && user.hash == hash
+    if user && user.password_hash == hash
       user
     else
       nil
