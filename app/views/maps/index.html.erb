@@ -4,47 +4,11 @@
 
 <script type="text/javascript">
   $(function() {
-    var bekesbourne = new google.maps.LatLng(51.26793,1.108246);
-    var opts = {
-      zoom: 12,
-      center: bekesbourne,
-      mapTypeId: google.maps.MapTypeId.HYBRID
-    };
-    var map = new google.maps.Map(document.getElementById("map"), opts);
-    
-    $.getJSON("/sightings.json", function(data) {
-    	$.each(data, function(key, val) {
-    		var lat = val.lat;
-    		var lng = val.long;
-    		var desc = val.description;
-    		var occ = val.occasion;
-    		var loc = new google.maps.LatLng(lat, lng);
-    		var marker = new google.maps.Marker({position: loc, map: map, title: desc});
-    		
-    		var info = new google.maps.InfoWindow();
-    		google.maps.event.addListener(marker, 'click', function () {
-    			var content = '<p>' + desc + '</p>';
-    			content += '<p>Date: ' + occ + '</p>';
-				info.setContent(content);
-                info.open(map, this);
-			});
-        });
-    });
-    
-    $(window).resize(setMapHeight);
+    drawMap();
+    getSightings();
     setMapHeight();
+    getLocation();
   });
-  
-  /**
-   * Set the height of the #contents div so that the map will fill
-   * the rest of the viewport after the menu bar.
-   */
-  function setMapHeight() {
-  	topbarheight = document.getElementById("topbar").offsetHeight;
-    viewportheight = window.innerHeight;
-    var contentsdiv = document.getElementById("contents");
-    contentsdiv.style.height = (viewportheight - topbarheight) + "px";
-  }
 </script>
 
 <% end %>
