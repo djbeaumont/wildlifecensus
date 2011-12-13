@@ -1,6 +1,4 @@
 Wildlifecensus::Application.routes.draw do
-  match "/maps" => "maps#index"
-
   resources :sightings
   resources :users
   resources :species
@@ -10,5 +8,5 @@ Wildlifecensus::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "register" => "users#new", :as => "register"
 
-  root :to => "home#index"
+  root :to => "maps#index"
 end
